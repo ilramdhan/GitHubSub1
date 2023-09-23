@@ -11,7 +11,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class MainViewModel : ViewModel() {
     val listUser = MutableLiveData<ArrayList<User>>()
 
@@ -27,7 +26,6 @@ class MainViewModel : ViewModel() {
                         listUser.postValue(response.body()?.items)
                     }
                 }
-
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                     Log.d("Failure", t.message.toString())
                 }

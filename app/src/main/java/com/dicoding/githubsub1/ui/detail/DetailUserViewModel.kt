@@ -13,7 +13,6 @@ import retrofit2.Response
 class DetailUserViewModel: ViewModel() {
 
     val user = MutableLiveData<DetailUserResponse>()
-
     fun setUserDetail(username: String){
         RetrofitClient.apiInstance
             .getUserDetail(username)
@@ -26,14 +25,11 @@ class DetailUserViewModel: ViewModel() {
                         user.postValue(response.body())
                     }
                 }
-
                 override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
                     Log.d("Failure", t.message.toString())
                 }
-
             })
     }
-
     fun getUserDetail(): LiveData<DetailUserResponse> {
         return user
     }

@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">GitHubSub1</string>
+    <string name="app_name">GitHub App</string>
+    <string name="detail_user_title">Detail User</string>
     <string name="search">Search</string>
     <string name="tab_1">Followers</string>
     <string name="tab_2">Following</string>
+    <string name="textview">Username</string>
 </resources>

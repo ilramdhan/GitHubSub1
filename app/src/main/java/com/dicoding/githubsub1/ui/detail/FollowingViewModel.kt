@@ -25,12 +25,9 @@ class FollowingViewModel : ViewModel() {
                         listFollowings.postValue(response.body())
                     }
                 }
-
                 override fun onFailure(call: Call<ArrayList<User>>, t: Throwable) {
                     Log.d("Failure", t.message.toString())
                 }
-
-
             })
     }
 

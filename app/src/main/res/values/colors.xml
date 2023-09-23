@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="nightBackground">#000000</color>
+    <color name="nightText">#FFFFFF</color>
+    <color name="lightBackground">#FFFFFF</color>
+    <color name="lightText">#000000</color>
 </resources>

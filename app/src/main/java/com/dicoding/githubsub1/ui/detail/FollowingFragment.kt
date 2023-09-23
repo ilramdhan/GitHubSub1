@@ -1,5 +1,6 @@
 package com.dicoding.githubsub1.ui.detail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -16,14 +17,13 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
     private lateinit var viewModel: FollowingViewModel
     private lateinit var adapter: UserAdapter
     private lateinit var username: String
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val args = arguments
         username = args?.getString(DetailUserActivity.EXTRA_USERNAME).toString()
-
         _binding = FragmentFollowBinding.bind(view)
-
         adapter = UserAdapter()
         adapter.notifyDataSetChanged()
 
@@ -37,14 +37,14 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
         viewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
-        ).get(FollowingViewModel::class.java)
+        )[FollowingViewModel::class.java]
         viewModel.setListFollowing(username)
-        viewModel.getListFollowing().observe(viewLifecycleOwner, {
+        viewModel.getListFollowing().observe(viewLifecycleOwner) {
             if (it != null) {
                 adapter.setList(it)
                 showLoading(false)
             }
-        })
+        }
     }
 
     override fun onDestroyView() {
