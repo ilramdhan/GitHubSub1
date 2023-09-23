@@ -1,6 +1,7 @@
 package com.dicoding.githubsub1.api
 
 import com.dicoding.githubsub1.data.model.DetailUserResponse
+import com.dicoding.githubsub1.data.model.User
 import com.dicoding.githubsub1.data.model.UserResponse
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -25,11 +26,11 @@ interface Api {
     @Headers("Authorization: token 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")
     fun getFollowers(
         @Path("username") username: String
-    ): retrofit2.Call<ArrayList<DetailUserResponse>>
+    ): retrofit2.Call<ArrayList<User>>
 
     @GET ("users/{username}/following")
     @Headers("Authorization: token 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")
     fun getFollowing(
         @Path("username") username: String
-    ): retrofit2.Call<ArrayList<DetailUserResponse>>
+    ): retrofit2.Call<ArrayList<User>>
 }
