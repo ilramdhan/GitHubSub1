@@ -1,12 +1,15 @@
 package com.dicoding.githubsub1.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.githubsub1.data.model.User
 import com.dicoding.githubsub1.databinding.ActivityMainBinding
+import com.dicoding.githubsub1.ui.detail.DetailUserActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +24,23 @@ class MainActivity : AppCompatActivity() {
 
         adapter = UserAdapter()
         adapter.notifyDataSetChanged()
+
+        adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: User) {
+                Intent(this@MainActivity, DetailUserActivity::class.java).also {
+                    it.putExtra(DetailUserActivity.EXTRA_USERNAME, data.login)
+//                    it.putExtra(DetailUserActivity.EXTRA_ID, data.id)
+//                    it.putExtra(DetailUserActivity.EXTRA_AVATAR_URL, data.avatar_url)
+//                    it.putExtra(DetailUserActivity.EXTRA_FOLLOWERS_URL, data.followers_url)
+//                    it.putExtra(DetailUserActivity.EXTRA_FOLLOWING_URL, data.following_url)
+//                    it.putExtra(DetailUserActivity.EXTRA_NAME, data.name)
+//                    it.putExtra(DetailUserActivity.EXTRA_FOLLOWERS, data.followers)
+//                    it.putExtra(DetailUserActivity.EXTRA_FOLLOWING, data.following)
+                    startActivity(it)
+                }
+            }
+        })
+
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
 
         binding.apply {

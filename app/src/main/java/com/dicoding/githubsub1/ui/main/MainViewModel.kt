@@ -7,10 +7,9 @@ import androidx.lifecycle.ViewModel
 import com.dicoding.githubsub1.api.RetrofitClient
 import com.dicoding.githubsub1.data.model.User
 import com.dicoding.githubsub1.data.model.UserResponse
+import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
-
 
 
 class MainViewModel : ViewModel() {
@@ -21,7 +20,7 @@ class MainViewModel : ViewModel() {
             .getSearchUsers(query)
             .enqueue(object : Callback<UserResponse> {
                 override fun onResponse(
-                    call: retrofit2.Call<UserResponse>,
+                    call: Call<UserResponse>,
                     response: Response<UserResponse>
                 ) {
                     if (response.isSuccessful) {
@@ -29,7 +28,7 @@ class MainViewModel : ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: retrofit2.Call<UserResponse>, t: Throwable) {
+                override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                     Log.d("Failure", t.message.toString())
                 }
             })
